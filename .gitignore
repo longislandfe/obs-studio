@@ -39,6 +39,7 @@ GeneratedFiles/
 .moc/
 /UI/obs.rc
 .vscode/
+/CI/scripts/macos/Brewfile.lock.json
 
 
 /packed_build/
