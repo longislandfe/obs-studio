@@ -170,7 +170,7 @@ install_obs-deps() {
     hr "Setting up pre-built macOS OBS dependencies v${1}"
     ensure_dir "${DEPS_BUILD_DIR}"
     step "Download..."
-    ${CURLCMD} --progress-bar -L -C - -O https://github.com.cnpmjs.org/obsproject/obs-deps/releases/download/${1}/macos-deps-${CURRENT_ARCH}-${1}.tar.gz
+    ${CURLCMD} --progress-bar -L -C - -O https://github.com/obsproject/obs-deps/releases/download/${1}/macos-deps-${CURRENT_ARCH}-${1}.tar.gz
     step "Unpack..."
     /usr/bin/tar -xf "./macos-deps-${CURRENT_ARCH}-${1}.tar.gz" -C /tmp
 }
@@ -179,7 +179,7 @@ install_qt-deps() {
     hr "Setting up pre-built dependency QT v${1}"
     ensure_dir "${DEPS_BUILD_DIR}"
     step "Download..."
-    ${CURLCMD} --progress-bar -L -C - -O https://github.com.cnpmjs.org/obsproject/obs-deps/releases/download/${2}/macos-qt-${1}-${CURRENT_ARCH}-${2}.tar.gz
+    ${CURLCMD} --progress-bar -L -C - -O https://github.com/obsproject/obs-deps/releases/download/${2}/macos-qt-${1}-${CURRENT_ARCH}-${2}.tar.gz
     step "Unpack..."
     /usr/bin/tar -xf ./macos-qt-${1}-${CURRENT_ARCH}-${2}.tar.gz -C /tmp
     /usr/bin/xattr -r -d com.apple.quarantine /tmp/obsdeps
@@ -198,7 +198,7 @@ install_sparkle() {
     hr "Setting up dependency Sparkle v${1} (might prompt for password)"
     ensure_dir "${DEPS_BUILD_DIR}/sparkle"
     step "Download..."
-    ${CURLCMD} --progress-bar -L -C - -o sparkle.tar.bz2 https://github.com.cnpmjs.org/sparkle-project/Sparkle/releases/download/${1}/Sparkle-${1}.tar.bz2
+    ${CURLCMD} --progress-bar -L -C - -o sparkle.tar.bz2 https://github.com/sparkle-project/Sparkle/releases/download/${1}/Sparkle-${1}.tar.bz2
     step "Unpack..."
     /usr/bin/tar -xf ./sparkle.tar.bz2
     step "Copy to destination..."
