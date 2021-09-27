@@ -273,7 +273,9 @@ configure_obs_build() {
     hr "Run CMAKE for OBS..."
     cmake -DENABLE_SPARKLE_UPDATER=ON \
         -DCMAKE_OSX_DEPLOYMENT_TARGET=${MIN_MACOS_VERSION:-${CI_MIN_MACOS_VERSION}} \
-        -DQTDIR="/tmp/obsdeps" \
+            -DENABLE_SCRIPTING=OFF \
+    	-DENABLE_UI=OFF \
+    	-DDISABLE_UI=ON \
         -DSWIGDIR="/tmp/obsdeps" \
         -DDepsPath="/tmp/obsdeps" \
         -DVLCPath="${DEPS_BUILD_DIR}/vlc-${VLC_VERSION:-${CI_VLC_VERSION}}" \

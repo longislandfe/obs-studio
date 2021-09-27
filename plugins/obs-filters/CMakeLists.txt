@@ -87,7 +87,11 @@ set(obs-filters_SOURCES
 	compressor-filter.c
 	limiter-filter.c
 	expander-filter.c
-	luma-key-filter.c)
+	luma-key-filter.c
+		background-mask.c
+		circle-avatar-filter.c)
+
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/background-matting/include")
 
 if(WIN32)
 	set(MODULE_DESCRIPTION "OBS A/V Filters")
@@ -95,6 +99,9 @@ if(WIN32)
 	list(APPEND obs-filters_SOURCES
 		obs-filters.rc)
 endif()
+
+file(GLOB MATTINGPLUGINS
+		"${CMAKE_CURRENT_SOURCE_DIR}/background-matting/plugins/*.dylib")
 
 add_library(obs-filters MODULE
 	${rnnoise_SOURCES}
@@ -105,7 +112,12 @@ add_library(obs-filters MODULE
 target_link_libraries(obs-filters
 	libobs
 	${obs-filters_PLATFORM_DEPS}
-	${obs-filters_NOISEREDUCTION_LIBRARIES})
+	${obs-filters_NOISEREDUCTION_LIBRARIES}
+		${MATTINGPLUGINS})
 set_target_properties(obs-filters PROPERTIES FOLDER "plugins")
 
 install_obs_plugin_with_data(obs-filters data)
+
+install_obs_data_from_abs_path(obs-filters
+		${CMAKE_CURRENT_SOURCE_DIR}/background-matting/plugins/
+		../bin/)
